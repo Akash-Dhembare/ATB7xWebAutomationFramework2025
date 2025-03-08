@@ -1,19 +1,30 @@
-package com.akash.dhembare2000.tests;
+package com.akash.dhembare2000.tests.sample;
 
+import com.akash.dhembare2000.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class TestVWOLogin {
+
+    @BeforeTest
+    public void setUp(){
+        DriverManager.init();
+    }
     @Test
     public void testLogin(){
-        EdgeOptions options= new EdgeOptions();
-        options.addArguments("--start-maximized");
-        WebDriver driver= new EdgeDriver(options);
+
+
+//        EdgeOptions options= new EdgeOptions();
+//        options.addArguments("--start-maximized");
+
+        WebDriver driver= DriverManager.getDriver();
+       // WebDriver driver= new EdgeDriver(options);
         driver.get("https://app.vwo.com");
         System.out.println(driver.getTitle());
         Assert.assertEquals(driver.getTitle(), "Login - VWO");
